@@ -7,7 +7,7 @@
 
 This project features a deep-dive analysis of various network protocols and security scenarios using **Wireshark**. It demonstrates security auditing, and traffic pattern recognition.
 
-The repository includes captured `.pcapng` files, detailed analysis reports, and custom Wireshark filters used to identify latencies and security vulnerabilities in modern network environments.
+The repository includes detailed analysis reports, and custom Wireshark filters used to identify latencies and security vulnerabilities in modern network environments.
 
 ---
 
@@ -59,7 +59,6 @@ The lab was staged across four distinct scenarios captured in an isolated enviro
 ## 📂 Repository Structure
 
 ```text
-├── pcaps/                # Raw .pcapng files for each scenario
 ├── reports/              # Detailed PDF analysis for each capture
 ├── screenshots/          # Visual evidence of filters and streams
 ├── filters_cheatsheet.md # Library of custom Wireshark display filters
