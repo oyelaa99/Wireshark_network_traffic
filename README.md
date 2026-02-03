@@ -92,7 +92,7 @@ This scenario highlights the dangers of legacy file transfer protocols.
 * **Conclusion:**
   FTP transmits usernames and passwords in **cleartext**, making it unsuitable for sensitive data transfer
 
-> 📌 **Note:** See *Figure 3* in the `/screenshots` folder for cleartext credential leakage
+> <img width="1734" height="852" alt="Image" src="https://github.com/user-attachments/assets/988012be-6c85-4770-9a78-d938cb613384" />
 
 ---
 
