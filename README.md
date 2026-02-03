@@ -75,6 +75,7 @@ This analysis focuses on how TCP establishes, maintains, and terminates reliable
   * `FIN-ACK`
   * `FIN-ACK`
 
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/f8758b8d-9a14-4b1a-b733-579a5f447e14" />
 ---
 
 ###  Scenario 03: Credential Leak (FTP vs SFTP)
