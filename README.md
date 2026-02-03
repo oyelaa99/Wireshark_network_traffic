@@ -72,8 +72,7 @@ The lab was staged across four distinct scenarios captured in an isolated enviro
 
 * **Packet Analyzer:** Wireshark
 * **Traffic Generation:**  Hping3
-  sudo hping3 -S --flood --rand-source [Target_IP] -p 80
-
+  `sudo hping3 -S --flood --rand-source [Target_IP] -p 80`
 * **Environment:** ubuntu / kali-linux
 * **Protocols:** TCP, UDP, HTTP, HTTPS (TLS), DNS, FTP, QUIC
 
