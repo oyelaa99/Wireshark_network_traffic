@@ -1,60 +1,148 @@
-This version incorporates your specific explanations and website examples while maintaining a high-quality GitHub format.
-Wireshark Network Traffic Forensics & Protocol Analysis
-📖 Project Description
-This project features a deep-dive analysis of various network protocols and security scenarios using Wireshark. It demonstrates security auditing and traffic pattern recognition through packet-level inspection.
-The repository includes detailed analysis reports and custom Wireshark filters used to identify latencies and security vulnerabilities in modern network environments.
-🎯 Key Learning Objectives
 
-    Encapsulation & Decapsulation: Visualizing how data travels through the OSI layers.
-    The TCP Three-Way Handshake: Analyzing sequence/acknowledgment numbers and flow control.
-    Security Auditing: Identifying plaintext credentials in unencrypted traffic (HTTP, FTP, Telnet).
+---
 
-🔍 Analysis Scenarios
-Scenario 01: The "Naked" Web (HTTP vs. HTTPS)
-In this scenario, I inspect HTTP and HTTPS packets to illustrate the vital importance of TLS encryption. I visited http://www.pentest-standard.org, a well-known platform used by ethical hackers. Despite its reputation, it does not use an "S" at the end of HTTP, meaning the site is not secure.
+#  Wireshark Network Traffic Forensics & Protocol Analysis
 
-    Discovery: After analyzing the pcap, I discovered I could see the entire content of the HTML file visited in cleartext.
-    Insight: This proves that without encryption, any data exchanged is visible to anyone on the network path.
-    (See figure below)
+## 📖 Project Description
 
-Scenario 02: The HANDSHAKE
-This analysis focuses on the process where the server and client "shake hands" to establish a connection by agreeing on common terms.
+This project presents an in-depth forensic analysis of network traffic and protocol behavior using **Wireshark**.
+It demonstrates hands-on skills in **network security auditing**, **packet-level inspection**, and **traffic pattern recognition** across multiple real-world scenarios.
 
-    The Process: I captured the three-step process (SYN, SYN-ACK, and ACK) used to ensure data reaches the correct receiver.
-    Transmission: Post-handshake, I analyzed how TCP manages reliability, ordering, and flow control using the Window Size.
-    Termination: Finally, I captured the connection closure where both parties agree to stop the session (FIN-ACK, FIN-ACK).
+The repository includes:
 
-Scenario 03: The Credential Leak (FTP vs. SFTP)
-Continuing with the importance of secure data transmission, I showcased the critical risk of using FTP instead of SFTP.
+* Detailed analysis reports
+* Custom Wireshark display filters
+* Visual packet capture evidence highlighting security flaws and performance insights
 
-    Discovery: After connecting to an FTP server with credentials and analyzing the packets, I was able to easily extract the username and password from the traffic stream.
-    Conclusion: This highlights why secure protocols are mandatory for sensitive information transfer.
-    (See picture below)
+---
 
-Scenario 04: Attack Simulation (TCP SYN Flood)
-For the final part, I moved to the attacker’s perspective to simulate a DoS attack based on a TCP SYN Flood.
+## 🎯 Key Learning Objectives
 
-    Methodology: By sending thousands of SYN requests via hping3, I forced the server to keep part of its memory waiting for the remaining part of the 3-way handshake.
-    Result: The server becomes exhausted from these "half-open" connections, eventually leading to a service crash or unavailability for legitimate users.
+* **Encapsulation & Decapsulation**
+  Visualizing how data traverses the OSI layers
 
-🛡️ Technical Mitigations
-To defend against the vulnerabilities identified:
+* **TCP Three-Way Handshake**
+  Analyzing sequence numbers, acknowledgments, and flow control
 
-    SYN Cookies: Enable SYN Cookies on servers to prevent memory exhaustion during a flood.
-    Protocol Hardening: Enforce SFTP (SSH File Transfer Protocol) and HSTS (HTTP Strict Transport Security) to prevent users from accessing unsecure versions of websites.
+* **Security Auditing**
+  Identifying plaintext credentials in unencrypted protocols (HTTP, FTP, Telnet)
 
-📂 Repository Structure
-text
+---
 
-├── reports/              # Detailed PDF analysis for each capture
-├── screenshots/          # Visual evidence of filters and streams
-├── filters_cheatsheet.md # Library of custom Wireshark display filters
-└── README.md             # Project documentation
+##  Analysis Scenarios
 
-Use code with caution.
-🛠️ Tools & Technologies
+###  Scenario 01: The *"Naked"* Web (HTTP vs HTTPS)
 
-    Packet Analyzer: Wireshark
-    Traffic Generation: Hping3 (sudo hping3 -S --flood --rand-source [Target_IP] -p 80)
-    Environment: Ubuntu / Kali-Linux
-    Protocols: TCP, UDP, HTTP, HTTPS (TLS), DNS, FTP, QUIC
+This scenario demonstrates the security risks of using **unencrypted HTTP** instead of HTTPS.
+
+* **Target Website:** `http://www.pentest-standard.org`
+  A well-known ethical hacking resource that surprisingly does **not** enforce HTTPS
+
+* **Discovery:**
+  Packet capture analysis revealed the **entire HTML content** transmitted in cleartext
+
+* **Insight:**
+  Without TLS encryption, all transmitted data can be intercepted and read by any attacker on the network path
+
+> 📌 **Note:** See *Figure 1* in the `/screenshots` folder for packet capture evidence
+
+---
+
+###  Scenario 02: The TCP *HANDSHAKE*
+
+This analysis focuses on how TCP establishes, maintains, and terminates reliable connections.
+
+* **Connection Setup:**
+  Captured the full **3-way handshake**:
+
+  * `SYN`
+  * `SYN-ACK`
+  * `ACK`
+
+* **Data Transmission:**
+  Analyzed reliability, ordering, and flow control using:
+
+  * Sequence numbers
+  * Acknowledgments
+  * TCP Window Size
+
+* **Connection Termination:**
+  Observed proper session closure:
+
+  * `FIN-ACK`
+  * `FIN-ACK`
+
+---
+
+###  Scenario 03: Credential Leak (FTP vs SFTP)
+
+This scenario highlights the dangers of legacy file transfer protocols.
+
+* **Discovery:**
+  Using **FTP**, credentials were easily extracted from captured packets using:
+
+  ```
+  Follow → TCP Stream
+  ```
+
+* **Conclusion:**
+  FTP transmits usernames and passwords in **cleartext**, making it unsuitable for sensitive data transfer
+
+> 📌 **Note:** See *Figure 3* in the `/screenshots` folder for cleartext credential leakage
+
+---
+
+###  Scenario 04: Attack Simulation (TCP SYN Flood)
+
+A **Denial-of-Service (DoS)** attack was simulated using a TCP SYN Flood.
+
+* **Methodology:**
+  Thousands of SYN packets were sent to the target server, forcing it to maintain **half-open connections**
+
+* **Result:**
+  Server memory becomes exhausted, preventing legitimate users from establishing connections
+
+```bash
+sudo hping3 -S --flood --rand-source <Target_IP> -p 80
+```
+
+---
+
+##  Technical Mitigations
+
+To mitigate the identified vulnerabilities:
+
+* **SYN Cookies**
+  Prevent memory exhaustion during SYN Flood attacks
+
+* **Protocol Hardening**
+  Enforce **HSTS (HTTP Strict Transport Security)** to block insecure HTTP access
+
+* **Encrypted Transfers**
+  Require **SFTP or SSH** for all file transfers
+
+---
+
+---
+
+## 🛠️ Tools & Technologies
+
+* **Packet Analyzer:** Wireshark
+* **Traffic Generation:** Hping3
+* **Operating Systems:** Ubuntu, Kali Linux
+* **Protocols Analyzed:**
+
+  * TCP
+  * UDP
+  * HTTP / HTTPS (TLS)
+  * DNS
+  * FTP
+  * QUIC
+
+---
+
+## 📌 Disclaimer
+
+This project was conducted in a **controlled lab environment** for educational and defensive security purposes only.
+
+---
