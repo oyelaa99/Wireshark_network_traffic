@@ -45,6 +45,8 @@ This scenario demonstrates the security risks of using **unencrypted HTTP** inst
   Without TLS encryption, all transmitted data can be intercepted and read by any attacker on the network path
 
 > 📌 **Note:** See *Figure 1* in the `/screenshots` folder for packet capture evidence
+>
+![Image](https://github.com/user-attachments/assets/711b1f0c-3dfc-458e-b5c2-92035e2b86ed)
 
 
 ---
