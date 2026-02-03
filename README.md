@@ -1,4 +1,3 @@
-Here is your project formatted into a professional, clean GitHub `README.md`. I have optimized the layout, added clear hierarchies, and included placeholders for your screenshots to make the repository look polished for recruiters.
 
 ---
 
@@ -6,7 +5,7 @@ Here is your project formatted into a professional, clean GitHub `README.md`. I 
 
 ## 📖 Project Description
 
-This project features a deep-dive analysis of various network protocols and security scenarios using **Wireshark**. It demonstrates proficiency in packet-level troubleshooting, security auditing, and traffic pattern recognition.
+This project features a deep-dive analysis of various network protocols and security scenarios using **Wireshark**. It demonstrates security auditing, and traffic pattern recognition.
 
 The repository includes captured `.pcapng` files, detailed analysis reports, and custom Wireshark filters used to identify latencies and security vulnerabilities in modern network environments.
 
@@ -17,7 +16,7 @@ The repository includes captured `.pcapng` files, detailed analysis reports, and
 * **Encapsulation & Decapsulation:** Visualizing how data travels through the OSI layers.
 * **The TCP Three-Way Handshake:** Analyzing sequence/acknowledgment numbers and flow control.
 * **Security Auditing:** Identifying plaintext credentials in unencrypted traffic (HTTP, FTP, Telnet).
-* **Troubleshooting:** Utilizing IO Graphs and Flow Graphs to spot network bottlenecks.
+
 
 ---
 
@@ -54,7 +53,6 @@ The lab was staged across four distinct scenarios captured in an isolated enviro
 
 * **Objective:** Identify the root cause of application latency.
 * **Observation:** High volume of **TCP Retransmissions** and **Duplicate ACKs** indicated significant packet loss.
-* **Analysis:** Utilized **IO Graphs** to correlate traffic spikes with latency patterns.
 
 ---
 
@@ -74,9 +72,9 @@ The lab was staged across four distinct scenarios captured in an isolated enviro
 ## 🛠️ Tools & Technologies
 
 * **Packet Analyzer:** Wireshark
-* **Traffic Generation:** Nmap, Hping3
-* **Environment:** Kali Linux / Windows 11
-* **Protocols:** TCP, UDP, HTTP, HTTPS (TLS), DNS, ARP, FTP, QUIC
+* **Traffic Generation:**  Hping3
+* **Environment:** ubuntu / kali-linux
+* **Protocols:** TCP, UDP, HTTP, HTTPS (TLS), DNS, FTP, QUIC
 
 ---
 
@@ -89,6 +87,3 @@ The lab was staged across four distinct scenarios captured in an isolated enviro
 
 ---
 
-### Next Step for your Repo:
-
-To make this truly stand out, you should create the `filters_cheatsheet.md` file mentioned in the structure. **Would you like me to generate a list of the most important Wireshark filters you should include in that file?**
